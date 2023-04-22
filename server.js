@@ -14,8 +14,9 @@ const openai = new OpenAIApi(config);
 
 app.post('/dream', async (req,res) => {
     const prompt = req.body.prompt;
-    const aiResponse = await openai.createImage({prompt,n:1,size:"1024x1024"});
+    const aiResponse = await openai.createImage({prompt,n:1});
     const image = aiResponse.data.data[0].url;
+    res.send({image})
 });
 
 app.listen(3000, () => {console.log('listening on port 3000')});
