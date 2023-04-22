@@ -21,7 +21,7 @@ app.post('/dream', async (req,res) => {
     }
     catch(err){
         console.error(err);
-        res.status(500).send(err? response.data.error.message : "something went wrong");
+        res.status(500).send(err?.response.data.error.message || "something went wrong");
     }
 });
 

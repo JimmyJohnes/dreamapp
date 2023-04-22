@@ -1,4 +1,3 @@
-import { response } from 'express';
 import './style.css'
 
 let form = document.querySelector('form');
@@ -18,7 +17,7 @@ form.addEventListener('submit',async (e) => {
       "prompt": formData.get('prompt')
     })
   });
-  if(response.ok)
+  if(data.ok)
   {
     const result =  await data.json();
     console.log(result);
