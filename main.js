@@ -1,8 +1,10 @@
 import './style.css'
 
 let form = document.querySelector('form');
+
 form.addEventListener('submit',async (e) => {
   e.preventDefault();
+  Generating();
   let formData = new FormData(form);
   const data = await fetch('http://localhost:3000/dream', {
     method: 'POST',
@@ -18,4 +20,19 @@ form.addEventListener('submit',async (e) => {
   const result =  await data.json();
   console.log(result);
   document.querySelector('#result').innerHTML = `<img src="${result.image}" width = "512" height = "512" alt = "${formData.get('prompt')}"/>`;
+  Generate();
 });
+
+function Generating()
+{
+  let button = document.querySelector('button');
+  button.disabled = true;
+  button.innerHTML = `Generating...`;
+
+}
+function Generate()
+{
+  let button = document.querySelector('button');
+  button.disabled = false;
+  button.innerHTML = `Generate`;
+}
