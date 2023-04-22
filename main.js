@@ -1,3 +1,4 @@
+import { response } from 'express';
 import './style.css'
 
 let form = document.querySelector('form');
@@ -17,9 +18,17 @@ form.addEventListener('submit',async (e) => {
       "prompt": formData.get('prompt')
     })
   });
-  const result =  await data.json();
-  console.log(result);
-  document.querySelector('#result').innerHTML = `<img src="${result.image}" width = "512" height = "512" alt = "${formData.get('prompt')}"/>`;
+  if(response.ok)
+  {
+    const result =  await data.json();
+    console.log(result);
+    document.querySelector('#result').innerHTML = `<img src="${result.image}" width = "512" height = "512" alt = "${formData.get('prompt')}"/>`;
+  }
+  else
+  {
+    const err = await data.text;
+    alert(err);
+  }
   Generate();
 });
 
